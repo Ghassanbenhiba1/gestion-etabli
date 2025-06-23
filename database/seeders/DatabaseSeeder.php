@@ -36,5 +36,11 @@ class DatabaseSeeder extends Seeder
         Classe::create(['nom' => 'DEV 101']);
         Classe::create(['nom' => 'GC 101']);
         Classe::create(['nom' => 'GC 201']);
+
+        // Appeler les autres seeders
+        $this->call([
+            FiliereSeeder::class,
+            MatiereSeeder::class,
+        ]);
     }
 }

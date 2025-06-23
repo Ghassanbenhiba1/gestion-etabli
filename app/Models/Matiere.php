@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Matiere extends Model
 {
-    protected $fillable = ['nom'];
+    protected $fillable = ['nom', 'filiere_id'];
+
+    public function filiere()
+    {
+        return $this->belongsTo(Filiere::class);
+    }
 
     public function absences()
     {

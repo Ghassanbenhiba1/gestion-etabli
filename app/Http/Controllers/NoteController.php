@@ -11,8 +11,11 @@ class NoteController extends Controller
 {
     public function create($etudiantId)
     {
-        $etudiant = Etudiant::findOrFail($etudiantId);
-        $matieres = Matiere::all();
+        $etudiant = Etudiant::with('filiere')->findOrFail($etudiantId);
+        
+        // Filtrer les matières selon la filière de l'étudiant
+        $matieres = Matiere::where('filiere_id', $etudiant->filiere_id)->orderBy('nom')->get();
+        
         return view('notes.create', compact('etudiant', 'matieres'));
     }
 
@@ -34,34 +37,35 @@ class NoteController extends Controller
         return redirect()->route('etudiants.show', $request->etudiant_id);
     }
 
-
-
     public function edit(Note $note)
-{
-    $matieres = Matiere::all();
-    return view('notes.edit', compact('note', 'matieres'));
-}
+    {
+        $note->load('etudiant.filiere');
+        
+        // Filtrer les matières selon la filière de l'étudiant
+        $matieres = Matiere::where('filiere_id', $note->etudiant->filiere_id)->orderBy('nom')->get();
+        
+        return view('notes.edit', compact('note', 'matieres'));
+    }
 
-public function update(Request $request, Note $note)
-{
-    $request->validate([
-        'note' => 'required|numeric|min:0|max:20',
-        'coefficient' => 'required|numeric|min:0',
-        'date' => 'required|date',
-        'description' => 'nullable|string',
-        'matiere_id' => 'required|exists:matieres,id',
-    ]);
+    public function update(Request $request, Note $note)
+    {
+        $request->validate([
+            'note' => 'required|numeric|min:0|max:20',
+            'coefficient' => 'required|numeric|min:0',
+            'date' => 'required|date',
+            'description' => 'nullable|string',
+            'matiere_id' => 'required|exists:matieres,id',
+        ]);
 
-    $note->update($request->all());
-    return redirect()->route('etudiants.show', $note->etudiant_id);
-}
+        $note->update($request->all());
+        return redirect()->route('etudiants.show', $note->etudiant_id);
+    }
 
-public function destroy(Note $note)
-{
-    $etudiantId = $note->etudiant_id;
-    $note->delete();
-    return redirect()->route('etudiants.show', $etudiantId);
-}
-
+    public function destroy(Note $note)
+    {
+        $etudiantId = $note->etudiant_id;
+        $note->delete();
+        return redirect()->route('etudiants.show', $etudiantId);
+    }
 }
 

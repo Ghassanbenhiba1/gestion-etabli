@@ -80,6 +80,12 @@
             <i class="fas fa-graduation-cap"></i>
             <span>Filières</span>
         </a>
+        <a href="{{ route('matieres.index') }}"
+           class="menu-item"
+           style="{{ request()->is('admin/matieres*') ? $activeStyle : '' }}">
+            <i class="fas fa-book-open"></i>
+            <span>Matières</span>
+        </a>
         <a href="{{ route('evenements.index') }}"
            class="menu-item"
            style="{{ request()->is('evenements*') ? $activeStyle : '' }}">

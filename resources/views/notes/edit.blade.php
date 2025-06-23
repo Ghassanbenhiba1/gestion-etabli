@@ -13,6 +13,9 @@
                 <i class="bi bi-journal-text me-2"></i>Modifier la note
             </h2>
             <p class="notes-form-subtitle">Pour {{ $note->etudiant->nom }} {{ $note->etudiant->prenom }}</p>
+            @if($note->etudiant->filiere)
+                <p class="notes-form-subtitle text-muted">Filière : {{ $note->etudiant->filiere->titre }}</p>
+            @endif
 
             <form action="{{ route('notes.update', $note->id) }}" method="POST" class="notes-form">
                 @csrf
@@ -21,12 +24,16 @@
                 <div class="notes-form-group">
                     <label class="notes-form-label">Matière</label>
                     <select name="matiere_id" class="notes-form-control" required>
+                        <option value="">-- Choisir une matière --</option>
                         @foreach($matieres as $matiere)
                             <option value="{{ $matiere->id }}" {{ $note->matiere_id == $matiere->id ? 'selected' : '' }}>
                                 {{ $matiere->nom }}
                             </option>
                         @endforeach
                     </select>
+                    @if($matieres->isEmpty())
+                        <small class="text-warning">Aucune matière disponible pour cette filière.</small>
+                    @endif
                 </div>
 
                 <div class="notes-form-row">

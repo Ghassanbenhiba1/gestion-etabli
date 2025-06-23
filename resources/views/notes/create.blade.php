@@ -13,6 +13,9 @@
                 <i class="bi bi-journal-plus me-2"></i>Ajouter une note
             </h2>
             <p class="notes-form-subtitle">Pour {{ $etudiant->nom }} {{ $etudiant->prenom }}</p>
+            @if($etudiant->filiere)
+                <p class="notes-form-subtitle text-muted">Filière : {{ $etudiant->filiere->titre }}</p>
+            @endif
 
             <form action="{{ route('notes.store') }}" method="POST" class="notes-form">
                 @csrf
@@ -21,10 +24,14 @@
                 <div class="notes-form-group">
                     <label class="notes-form-label">Matière</label>
                     <select name="matiere_id" class="notes-form-control" required>
+                        <option value="">-- Choisir une matière --</option>
                         @foreach($matieres as $matiere)
                             <option value="{{ $matiere->id }}">{{ $matiere->nom }}</option>
                         @endforeach
                     </select>
+                    @if($matieres->isEmpty())
+                        <small class="text-warning">Aucune matière disponible pour cette filière. Veuillez d'abord ajouter des matières.</small>
+                    @endif
                 </div>
 
                 <div class="notes-form-row">

@@ -20,6 +20,7 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\GestionController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\EtudiantDashboardController;
+use App\Http\Controllers\MatiereController;
 
 /**
  * Page d'accueil
@@ -115,6 +116,13 @@ Route::get('/cours/{id}/edit', [CoursController::class, 'edit'])->name('cours.ed
 Route::put('/cours/{id}', [CoursController::class, 'update'])->name('cours.update'); // Mise à jour du cours
 Route::delete('/cours/{id}', [CoursController::class, 'destroy'])->name('cours.destroy'); // Suppression du cours
 
+    // Gestion des matières
+    Route::get('/matieres', [MatiereController::class, 'index'])->name('matieres.index');
+    Route::get('/matieres/create', [MatiereController::class, 'create'])->name('matieres.create');
+    Route::post('/matieres', [MatiereController::class, 'store'])->name('matieres.store');
+    Route::get('/matieres/{id}/edit', [MatiereController::class, 'edit'])->name('matieres.edit');
+    Route::put('/matieres/{id}', [MatiereController::class, 'update'])->name('matieres.update');
+    Route::delete('/matieres/{id}', [MatiereController::class, 'destroy'])->name('matieres.destroy');
     
 });
 
