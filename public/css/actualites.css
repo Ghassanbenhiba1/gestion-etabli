@@ -1,0 +1,336 @@
+/* actualites.css - Style pour les pages d'actualités */
+
+/* Styles communs */
+.actualite-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.actualite-container:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.actualite-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.actualite-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.actualite-subtitle {
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+/* Alertes */
+.actualite-alert {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.actualite-alert-success {
+    background-color: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    color: #166534;
+}
+
+.actualite-alert-danger {
+    background-color: #fef2f2;
+    border-left: 4px solid #dc3545;
+    color: #dc3545;
+}
+
+/* Formulaires */
+.actualite-form-label {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.actualite-form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.actualite-form-control:focus {
+    border-color: #4361ee;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+.actualite-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Boutons */
+.actualite-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.actualite-btn-primary {
+    background-color: #4361ee;
+    color: white;
+}
+
+.actualite-btn-primary:hover {
+    background-color: #3a56d4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.actualite-btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.actualite-btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Tableau des actualités */
+.actualite-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+.actualite-table thead {
+    background-color: rgba(67, 97, 238, 0.1);
+}
+
+.actualite-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #2d3748;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.actualite-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+}
+
+.actualite-table tr:hover td {
+    background-color: rgba(67, 97, 238, 0.03);
+}
+
+.actualite-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Champ fichier */
+.actualite-file-input-container {
+    margin-bottom: 1.5rem;
+}
+
+.actualite-file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.actualite-file-input-button {
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(67, 97, 238, 0.1);
+    color: #4361ee;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px dashed #4361ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.actualite-file-input-button:hover {
+    background-color: rgba(67, 97, 238, 0.1);
+}
+
+.actualite-file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.actualite-file-name {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+/* Aperçu image actuelle */
+.actualite-current-image {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .actualite-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .actualite-title {
+        font-size: 1.5rem;
+    }
+    
+    .actualite-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .actualite-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* Styles spécifiques pour la page d'édition des cours */
+.actualite-form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.actualite-btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.actualite-btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+.actualite-current-file {
+    font-size: 0.9rem;
+    color: #495057;
+    margin-top: 0.5rem;
+}
+
+/* Amélioration des selects */
+.actualite-form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    padding-right: 2.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+/* Styles supplémentaires pour les cours */
+.actualite-link {
+    color: #4361ee;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.actualite-link:hover {
+    color: #3a56d4;
+    text-decoration: underline;
+}
+
+.actualite-link i {
+    font-size: 1.1rem;
+}
+
+/* Style spécifique pour les liens PDF */
+.actualite-link.pdf {
+    color: #e63946;
+}
+
+.actualite-link.pdf:hover {
+    color: #c1121f;
+}
+
+
+
+
+
+
+
+/* Styles spécifiques pour la page d'ajout de cours */
+.actualite-form-text {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+/* Style pour les options de select */
+.actualite-form-control option {
+    padding: 0.5rem;
+}
+
+/* Style pour le placeholder des selects */
+.actualite-form-control option[value=""] {
+    color: #6c757d;
+    font-style: italic;
+}

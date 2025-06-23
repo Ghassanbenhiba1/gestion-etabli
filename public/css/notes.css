@@ -1,0 +1,154 @@
+/* Variables spécifiques aux notes */
+:root {
+    --notes-primary: #4361ee;
+    --notes-success: #4cc9f0;
+    --notes-danger: #f72585;
+    --notes-dark: #2b2d42;
+    --notes-light: #f8f9fa;
+    --notes-gray: #6c757d;
+    --notes-gray-light: #e9ecef;
+    --notes-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Conteneur principal */
+.notes-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Carte du formulaire */
+.notes-form-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--notes-card-shadow);
+    padding: 2rem;
+}
+
+.notes-form-title {
+    color: var(--notes-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.notes-form-subtitle {
+    color: var(--notes-gray);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+/* Formulaire */
+.notes-form {
+    margin-top: 1.5rem;
+}
+
+.notes-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.notes-form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.notes-form-row .notes-form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.notes-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--notes-dark);
+}
+
+.notes-form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--notes-gray-light);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.notes-form-control:focus {
+    border-color: var(--notes-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+textarea.notes-form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Boutons */
+.notes-form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--notes-gray-light);
+}
+
+.notes-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+}
+
+.notes-btn-primary {
+    background-color: var(--notes-primary);
+    color: white;
+}
+
+.notes-btn-primary:hover {
+    background-color: #3a56d4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.notes-btn-success {
+    background-color: var(--notes-success);
+    color: white;
+}
+
+.notes-btn-success:hover {
+    background-color: #3ab4d4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 201, 240, 0.2);
+}
+
+.notes-btn-secondary {
+    background-color: var(--notes-gray-light);
+    color: var(--notes-dark);
+}
+
+.notes-btn-secondary:hover {
+    background-color: #d1d5db;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .notes-form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .notes-form-actions {
+        flex-direction: column;
+    }
+    
+    .notes-btn {
+        width: 100%;
+    }
+}

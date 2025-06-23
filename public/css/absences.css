@@ -1,0 +1,154 @@
+/* Variables spécifiques aux absences */
+:root {
+    --absences-primary: #4361ee;
+    --absences-warning: #f8961e;
+    --absences-danger: #f72585;
+    --absences-dark: #2b2d42;
+    --absences-light: #f8f9fa;
+    --absences-gray: #6c757d;
+    --absences-gray-light: #e9ecef;
+    --absences-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Conteneur principal */
+.absences-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Carte du formulaire */
+.absences-form-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--absences-card-shadow);
+    padding: 2rem;
+}
+
+.absences-form-title {
+    color: var(--absences-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.absences-form-subtitle {
+    color: var(--absences-gray);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+/* Formulaire */
+.absences-form {
+    margin-top: 1.5rem;
+}
+
+.absences-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.absences-form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.absences-form-row .absences-form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.absences-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--absences-dark);
+}
+
+.absences-form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--absences-gray-light);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.absences-form-control:focus {
+    border-color: var(--absences-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+textarea.absences-form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Boutons */
+.absences-form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--absences-gray-light);
+}
+
+.absences-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+}
+
+.absences-btn-primary {
+    background-color: var(--absences-primary);
+    color: white;
+}
+
+.absences-btn-primary:hover {
+    background-color: #3a56d4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.absences-btn-warning {
+    background-color: var(--absences-warning);
+    color: white;
+}
+
+.absences-btn-warning:hover {
+    background-color: #e68a19;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(248, 150, 30, 0.2);
+}
+
+.absences-btn-secondary {
+    background-color: var(--absences-gray-light);
+    color: var(--absences-dark);
+}
+
+.absences-btn-secondary:hover {
+    background-color: #d1d5db;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .absences-form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .absences-form-actions {
+        flex-direction: column;
+    }
+    
+    .absences-btn {
+        width: 100%;
+    }
+}

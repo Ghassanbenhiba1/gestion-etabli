@@ -1,0 +1,162 @@
+/* Variables spécifiques */
+:root {
+    --classe-primary: #4361ee;
+    --classe-secondary: #3f37c9;
+    --classe-success: #4cc9f0;
+    --classe-danger: #f72585;
+    --classe-text: #2b2d42;
+    --classe-light: #f8f9fa;
+    --classe-border: #e0e0e0;
+    --classe-card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Conteneur principal */
+.classe-details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* En-tête */
+.classe-header {
+    margin-bottom: 2rem;
+}
+
+.classe-title {
+    color: var(--classe-primary);
+    display: flex;
+    align-items: center;
+    font-size: 1.75rem;
+}
+
+/* Grille de statistiques */
+.classe-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Cartes de statistiques */
+.classe-stat-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--classe-card-shadow);
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.classe-stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.classe-stat-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--classe-border);
+}
+
+.classe-stat-icon {
+    font-size: 1.5rem;
+    color: var(--classe-primary);
+}
+
+.classe-stat-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--classe-primary);
+}
+
+/* Liste des moyennes */
+.classe-stat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.classe-stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed var(--classe-border);
+}
+
+.classe-stat-item:last-child {
+    border-bottom: none;
+}
+
+.classe-stat-label {
+    font-weight: 500;
+}
+
+.classe-stat-value {
+    font-weight: 600;
+}
+
+.text-success {
+    color: var(--classe-success);
+}
+
+.text-danger {
+    color: var(--classe-danger);
+}
+
+/* Liste des tops */
+.classe-top-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.classe-top-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px dashed var(--classe-border);
+}
+
+.classe-top-item:last-child {
+    border-bottom: none;
+}
+
+.classe-top-rank {
+    width: 30px;
+    height: 30px;
+    background-color: var(--classe-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.classe-top-content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.classe-top-name {
+    font-weight: 500;
+}
+
+.classe-top-score {
+    font-weight: 600;
+    color: var(--classe-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .classe-details-container {
+        padding: 1rem;
+    }
+    
+    .classe-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
