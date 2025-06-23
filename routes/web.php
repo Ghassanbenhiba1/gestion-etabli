@@ -225,9 +225,11 @@ Route::post('/etudiant/logout', [EtudiantLoginController::class, 'logout'])->nam
 
 
 Route::get('/etudiant/dashboard', [EtudiantDashboardController::class, 'index'])
+    ->middleware('etudiant')
     ->name('etudiant.dashboard');
 
 // Route pour mettre à jour la photo de profil de l'étudiant
 Route::post('/etudiant/update-photo', [EtudiantDashboardController::class, 'updatePhoto'])
+    ->middleware('etudiant')
     ->name('etudiant.update-photo');
 

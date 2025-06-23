@@ -270,8 +270,8 @@
             </div>
 
             <div class="login-form-group">
-                <label for="password_plain" class="login-label">Mot de passe</label>
-                <input type="password" id="password_plain" name="password_plain" class="login-input" required placeholder="Entrez votre mot de passe">
+                <label for="password" class="login-label">Mot de passe</label>
+                <input type="password" id="password" name="password" class="login-input" required placeholder="Entrez votre mot de passe">
             </div>
 
             <button type="submit" class="login-submit-button">Se connecter</button>

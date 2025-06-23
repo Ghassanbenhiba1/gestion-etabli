@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Etudiant;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class EtudiantLoginController extends Controller
 {
@@ -17,44 +18,30 @@ class EtudiantLoginController extends Controller
     {
         $credentials = $request->validate([
             'identifiant' => 'required|string',
-            'password_plain' => 'required|string',
+            'password' => 'required|string',
         ]);
 
-        // Méthode 1: Authentification manuelle (si vous ne voulez pas utiliser le système d'authentification de Laravel)
-        $etudiant = Etudiant::where('identifiant', $credentials['identifiant'])
-                            ->where('password_plain', $credentials['password_plain'])
-                            ->first();
+        $etudiant = Etudiant::where('identifiant', $credentials['identifiant'])->first();
 
-        if (!$etudiant) {
-            return back()->withErrors([
-                'identifiant' => 'Identifiant ou mot de passe incorrect.',
-            ])->onlyInput('identifiant');
+        if ($etudiant && Hash::check($credentials['password'], $etudiant->password)) {
+            Auth::guard('etudiant')->login($etudiant);
+
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('etudiant.dashboard'));
         }
 
-        // Stocker l'étudiant en session
-        session(['etudiant_id' => $etudiant->id]);
-
-        // Méthode 2: Si vous avez configuré un guard 'etudiant' (recommandé)
-        // if (!Auth::guard('etudiant')->attempt($credentials)) {
-        //     return back()->withErrors([
-        //         'identifiant' => 'Identifiant ou mot de passe incorrect.',
-        //     ])->onlyInput('identifiant');
-        // }
-
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('etudiant.dashboard'));
+        return back()->withErrors([
+            'identifiant' => 'Identifiant ou mot de passe incorrect.',
+        ])->onlyInput('identifiant');
     }
 
     public function logout(Request $request)
     {
-        // Méthode 1: Pour l'authentification manuelle
-        $request->session()->forget('etudiant_id');
-        
-        // Méthode 2: Si vous utilisez le guard 'etudiant'
-        // Auth::guard('etudiant')->logout();
-        
+        Auth::guard('etudiant')->logout();
+
         $request->session()->invalidate();
+
         $request->session()->regenerateToken();
 
         return redirect()->route('home');

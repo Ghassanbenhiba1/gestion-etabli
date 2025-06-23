@@ -6,15 +6,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Etudiant;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class EtudiantDashboardController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $etudiantId = session('etudiant_id');
-
-        $etudiant = Etudiant::with(['classe', 'filiere.cours', 'notes.matiere', 'absences', 'parentEtudiant'])->findOrFail(session('etudiant_id'));
+        $etudiant = auth('etudiant')->user();
+        $etudiant->load(['classe', 'filiere.cours', 'notes.matiere', 'absences', 'parentEtudiant']);
 
         return view('etudiant.dashboard', compact('etudiant'));
     }
@@ -25,7 +25,7 @@ class EtudiantDashboardController extends Controller
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $etudiant = Etudiant::findOrFail(session('etudiant_id'));
+        $etudiant = auth('etudiant')->user();
 
         // Supprimer l'ancienne photo si elle existe
         if ($etudiant->photo && Storage::disk('public')->exists($etudiant->photo)) {

@@ -86,7 +86,6 @@ class EtudiantController extends Controller
             'classe_id' => $validated['classe_id'],
             'filiere_id' => $validated['filiere_id'],
             'password' => $password_hashed,
-            'password_plain' => $password_plain,
         ]);
 
         ParentEtudiant::create([
@@ -98,7 +97,7 @@ class EtudiantController extends Controller
 
         // ✅ Affiche un message ou envoie par email si tu veux
         return redirect()->route('etudiants.index')
-            ->with('success', 'Étudiant créé avec succès ! Mot de passe : ' . $password_plain);
+            ->with('success', 'Étudiant créé avec succès ! Mot de passe (basé sur la date de naissance) : ' . $password_plain);
     }
 
 
@@ -119,7 +118,7 @@ class EtudiantController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'identifiant' => 'required|string|max:50|unique:etudiants,identifiant,' . $id,
@@ -132,10 +131,24 @@ class EtudiantController extends Controller
         ]);
 
         $etudiant = Etudiant::findOrFail($id);
-        $etudiant->update($request->all());
+        $etudiant->fill($validated);
+
+        // Si la date de naissance est modifiée, on met à jour le mot de passe
+        if ($request->has('date_naissance') && $etudiant->isDirty('date_naissance')) {
+            $date = $validated['date_naissance'];
+            $password_plain = date('dmY', strtotime($date));
+            $etudiant->password = Hash::make($password_plain);
+        }
+
+        $etudiant->save();
+
+        $message = 'Étudiant mis à jour avec succès.';
+        if ($etudiant->wasChanged('password')) {
+            $message .= ' Le mot de passe a été mis à jour.';
+        }
 
         return redirect()->route('etudiants.show', $etudiant->id)
-            ->with('success', 'Étudiant mis à jour avec succès.');
+            ->with('success', $message);
     }
 
 

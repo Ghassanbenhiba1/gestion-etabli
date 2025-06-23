@@ -22,13 +22,31 @@ class Etudiant extends Authenticatable
         'classe_id',
         'filiere_id',
         'password',
-        'password_plain', // <= ajoute cette ligne
-
     ];
 
     protected $hidden = [
         'password', // pour cacher lors de la serialization
     ];
+
+    /**
+     * Get the name of the unique identifier for the user.
+     *
+     * @return string
+     */
+    public function getAuthIdentifierName()
+    {
+        return 'identifiant';
+    }
+
+    /**
+     * Get the column name for the "username" for authentication.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'identifiant';
+    }
 
     /**
      * Relations

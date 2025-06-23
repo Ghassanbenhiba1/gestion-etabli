@@ -11,12 +11,20 @@ return [
             'driver' => 'session',
             'provider' => 'utilisateurs',
         ],
+        'etudiant' => [
+            'driver' => 'session',
+            'provider' => 'etudiants',
+        ],
     ],
 
     'providers' => [
         'utilisateurs' => [
             'driver' => 'eloquent',
             'model' => App\Models\Utilisateur::class,
+        ],
+        'etudiants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Etudiant::class,
         ],
     ],
 
